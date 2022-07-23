@@ -12,7 +12,7 @@ export default function Container(props: any) {
       <Head>
         <title>{meta.title}</title>
       </Head>
-      <div className="flex w-screen min-h-screen items-center justify-center m-auto bg-black">
+      <div className="flex text-white w-screen min-h-screen items-center justify-center m-auto bg-black">
         {children}
       </div>
     </>

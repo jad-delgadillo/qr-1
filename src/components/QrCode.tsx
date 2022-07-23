@@ -1,15 +1,17 @@
+import { saveAs } from "file-saver";
 import Image from "next/image";
 import { useContext } from "react";
 import { InputContext } from "./Hero";
 
 const QrCode = () => {
   const { response, loading, error } = useContext(InputContext);
-
+  const downloadImage = () => {
+    saveAs(response, "qrCode.png");
+  };
   if (loading) {
     return (
       <div className="animate-pulse flex flex-col items-center justify-center px-10 gap-3">
-        <div className="h-32 w-full bg-gray-300"></div>
-        <div className="h-8 w-full bg-gray-300"></div>
+        <div className="relative h-60 w-full bg-gray-300"></div>
       </div>
     );
   }
@@ -21,9 +23,9 @@ const QrCode = () => {
     );
   }
   return (
-    <div className="bg-gray-100 rounded-r-medium flex flex-col items-center justify-center">
+    <div className="rounded-r-medium flex flex-col items-center justify-center">
       {response ? (
-        <div className="p-5 rounded-xl shadow-gray-500 w-[250px] h-[250px] bg-gray-300 shadow-lg">
+        <div className="p-5 rounded-xl w-[250px] h-[250px] bg-indigo-400 shadow-indigo-500 shadow-lg">
           <img src={response} alt={"QR Code Image"} className="rounded-xl" />
         </div>
       ) : (
@@ -31,7 +33,10 @@ const QrCode = () => {
           Your Qr-Code will show here.
         </div>
       )}
-      <button className="mt-7 p-2 px-4 bg-orange-500 hover:bg-orange-600 transition-all text-white rounded">
+      <button
+        onClick={downloadImage}
+        className="mt-7 p-2 px-4 bg-orange-500 hover:bg-orange-600 transition-all text-white rounded"
+      >
         Download
       </button>
     </div>

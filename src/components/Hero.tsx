@@ -55,7 +55,7 @@ export default function Hero() {
   return (
     <>
       <div className="flex w-screen max-w-5xl min-h-screen items-center justify-center m-auto">
-        <div className="container mx-auto text-xl font-medium bg-gray-100 p-10 rounded">
+        <div className="container mx-auto text-xl font-medium   bg-gradient-to-r from-indigo-500 via-purple-500 to-blue-800 p-10 rounded-2xl">
           <div className="md:grid md:grid-cols-3">
             <InputContext.Provider value={value}>
               <InputForm />
