@@ -4,6 +4,9 @@ import { ChromePicker } from "react-color";
 const InputColor = () => {
   const [color, setColor] = useState("#054080");
   const [displayColorPicker, setDisplayColorPicker] = useState(false);
+
+  const handleChange = (color: any) => setColor(color.hex);
+
   return (
     <div>
       <label className="font-semibold text-md">Color</label>
@@ -15,7 +18,11 @@ const InputColor = () => {
         ></div>
         <span>{color}</span>
       </div>
-      {displayColorPicker && <ChromePicker />}
+      {displayColorPicker && (
+        <div className="absolute mt-2">
+          <ChromePicker color={color} onChange={handleChange} />
+        </div>
+      )}
     </div>
   );
 };
