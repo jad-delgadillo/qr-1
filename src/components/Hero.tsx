@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { createContext, useState } from "react";
 import InputForm from "./InputForm";
 import QrCode from "./QrCode";
@@ -10,11 +11,46 @@ export default function Hero() {
     url: "",
     color: "",
   });
+
+  const [response, setResponse] = useState("");
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const config = {
+    headers: {
+      Authorization: "Bearer 4b0b3e90-0a46-11ed-bbd3-65ce00374c15",
+    },
+  };
+  const bodyParameters = {
+    colorDark: inputValue.color,
+    qrCategory: "url",
+    text: inputValue.url,
+  };
+
+  const getQrCode = async () => {
+    try {
+      setLoading(true);
+      const res = await axios.post(
+        "https://qrtiger.com/api/qr/static",
+        bodyParameters,
+        config
+      );
+      setResponse(res.data.url);
+    } catch (err) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  // 4b0b3e90-0a46-11ed-bbd3-65ce00374c15
   const value = {
     inputValue,
     setInputValue,
+    getQrCode,
+    response,
+    loading,
+    error,
   };
-  console.log(inputValue);
 
   return (
     <>
