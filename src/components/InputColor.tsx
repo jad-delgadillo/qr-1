@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { ChromePicker } from "react-color";
 
 const InputColor = () => {
   const [color, setColor] = useState("#054080");
@@ -14,7 +15,7 @@ const InputColor = () => {
         ></div>
         <span>{color}</span>
       </div>
-      {displayColorPicker && "ShowColorPicker"}
+      {displayColorPicker && <ChromePicker />}
     </div>
   );
 };
