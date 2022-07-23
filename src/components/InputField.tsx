@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { InputContext } from "./Hero";
 
 const InputField = () => {
+  const { inputValue, setInputValue } = useContext(InputContext);
+  const handleOnChange = (e: any) =>
+    setInputValue({ ...inputValue, url: e.target.value });
+
   return (
     <div>
       <label className="font-semibold text-md"> Your URL </label>
@@ -8,6 +13,8 @@ const InputField = () => {
         type="url"
         className="w-full border-2 py-1 px-3 text-gray-700 rounded-xl"
         placeholder="https://example.com"
+        value={inputValue.url}
+        onChange={handleOnChange}
       />
     </div>
   );
